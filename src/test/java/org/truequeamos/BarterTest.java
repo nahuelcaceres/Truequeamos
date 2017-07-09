@@ -1,7 +1,8 @@
 package org.truequeamos;
 
-import junit.framework.TestCase;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 
@@ -10,42 +11,30 @@ import static org.junit.Assert.*;
  */
 public class BarterTest {
 
-    @Test //(expected = Exception.class)
-    public void testNoDeberiaCrearTruequeConImporteCero()
-    {
-        boolean assertResult;
-        try {
-            Barter barter = Barter.create(0);
-            assertResult = true;
+    @Rule
+    public final ExpectedException expectedException = ExpectedException.none();
 
-        }catch (RuntimeException runtimeExcection){
-            assertResult = false;
-        }
+    @Test
+    public void CannotCreateBarterWithZeroAmount() {
+        expectedException.expect(RuntimeException.class);
+        expectedException.expectMessage("El importe no puede ser cero");
 
-        assertFalse(assertResult);
+        Barter.create(0);
     }
 
     @Test
-    public void testPuedoCrearTruequeConValoresPositivos(){
-        Barter barter= Barter.create(5);
+    public void CannotCreateBarterWithNegativeAmount() {
+        expectedException.expect(RuntimeException.class);
+        expectedException.expectMessage("El importe no puede ser cero");
 
-        assertTrue(barter.getPrice()> 0);
+        Barter.create(-4);
     }
 
-    @Test //(expected = Exception.class)
-    public void testNoDeberiaCrearTruequeConImportesMenoresACero()
-    {
-        boolean assertResult;
-        try {
-            Barter barter =  Barter.create(-4);
+    @Test
+    public void CanCreateBarterWithPositiveAmount() {
+        Barter barter = Barter.create(5);
 
-            assertResult = true;
-
-        }catch (RuntimeException runtimeExcection){
-            assertResult = false;
-        }
-
-        assertFalse(assertResult);
+        assertTrue(barter.getPrice() == 5);
     }
 
 }
