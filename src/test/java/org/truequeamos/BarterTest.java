@@ -11,12 +11,11 @@ import static org.junit.Assert.*;
 public class BarterTest {
 
     @Test //(expected = Exception.class)
-    public void testNoDeberiaCrearTruequeConImportesNegativos()
+    public void testNoDeberiaCrearTruequeConImporteCero()
     {
         boolean assertResult;
         try {
-            Barter barter = new Barter(0);
-
+            Barter barter = Barter.create(0);
             assertResult = true;
 
         }catch (RuntimeException runtimeExcection){
@@ -28,7 +27,7 @@ public class BarterTest {
 
     @Test
     public void testPuedoCrearTruequeConValoresPositivos(){
-        Barter barter= new Barter(5);
+        Barter barter= Barter.create(5);
 
         assertTrue(barter.getPrice()> 0);
     }
@@ -38,7 +37,7 @@ public class BarterTest {
     {
         boolean assertResult;
         try {
-            Barter barter = new Barter(-4);
+            Barter barter =  Barter.create(-4);
 
             assertResult = true;
 
