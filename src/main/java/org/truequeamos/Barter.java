@@ -7,20 +7,15 @@ public class Barter {
 
     private int price;
 
-    public static Barter create(int price){
-        if (price<=0){
+    public static Barter create(int price) {
+        if (price <= 0) {
             throw new RuntimeException("El importe no puede ser cero");
         }
 
-        Barter barter = new Barter(price);
-        return barter;
+        return new Barter(price);
     }
 
     private Barter(int price) {
-        if (price<=0){
-            throw new RuntimeException("El importe no puede ser cero");
-        }
-
         this.price = price;
     }
 
