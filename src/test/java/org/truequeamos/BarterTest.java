@@ -4,7 +4,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by nahuel on 06/07/2017.
@@ -37,4 +37,21 @@ public class BarterTest {
         assertTrue(barter.getPrice() == 5);
     }
 
+    @Test
+    public void test1(){
+        int idItemFrom = 1;
+        int idItemTo = 2;
+        int idUserFrom = 1;
+        int idUserTo = 2;
+
+        Intercambio intercambio = Intercambio.create(idUserFrom, idItemFrom, idUserTo, idItemTo);
+
+        Barter barter = Barter.create(intercambio);
+
+        barter.concretar();
+
+        assertTrue("No se realizo el intercambio correctamente",idItemFrom == intercambio.getIdItemTo()) ;
+        assertTrue("No se realizo el intercambio correctamente",idItemTo == intercambio.getIdItemFrom());
+
+    }
 }
