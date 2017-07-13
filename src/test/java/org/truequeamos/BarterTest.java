@@ -38,20 +38,20 @@ public class BarterTest {
     }
 
     @Test
-    public void test1(){
+    public void VerifyTradeoffCorrectlyBetweenTwoUsers() {
         int idItemFrom = 1;
         int idItemTo = 2;
         int idUserFrom = 1;
         int idUserTo = 2;
 
-        Intercambio intercambio = Intercambio.create(idUserFrom, idItemFrom, idUserTo, idItemTo);
+        TradeOff tradeOff = TradeOff.create(idUserFrom, idItemFrom, idUserTo, idItemTo);
 
-        Barter barter = Barter.create(intercambio);
+        Barter barter = Barter.create(tradeOff);
 
         barter.concretar();
 
-        assertTrue("No se realizo el intercambio correctamente",idItemFrom == intercambio.getIdItemTo()) ;
-        assertTrue("No se realizo el intercambio correctamente",idItemTo == intercambio.getIdItemFrom());
+        assertTrue("No se realizo el tradeOff correctamente",idItemFrom == tradeOff.getIdItemTo()) ;
+        assertTrue("No se realizo el tradeOff correctamente",idItemTo == tradeOff.getIdItemFrom());
 
     }
 }
